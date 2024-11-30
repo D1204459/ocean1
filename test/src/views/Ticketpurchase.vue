@@ -37,16 +37,20 @@ import { useRouter } from 'vue-router';
 export default {
   name: 'TicketPurchase',
   setup() {
+    console.log('TicketPurchase component mounted');
     const router = useRouter();
 
+
     function goToOnlineBooking() {
-      router.push('/online-booking-system');
+      console.log('Attempting to navigate...');
+      router.push({ name: 'Onlinebookingsystem' });
     }
 
     return {
       goToOnlineBooking
     };
   },
+
   data() {
     return {
       tickets: [
@@ -74,70 +78,181 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    console.log('TicketPurchase mounted');
   }
 }
 </script>
 
 
-<style>
+<style scoped>
 .table-container {
-
-  max-width: 50%;
-  margin: 100px auto;
-  padding: 1rem;
+  max-width: 75%;
+  margin: 50px auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .table-header {
-
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
+/* 線上訂票按鈕 */
 .table-button {
-  padding: 0.8rem 1rem;
-  background-color: #6b5b95;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #6b5b95, #826eaf);
   color: white;
   border: none;
-  border-radius: 13px;
+  border-radius: 50px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 1.3rem; /* 設置字體大小 */
-
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(107, 91, 149, 0.3);
 }
 
+.table-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(107, 91, 149, 0.4);
+  background: linear-gradient(135deg, #7d6cad, #9683c3);
+}
+
+/* 標題 */
 .table-title {
-  font-size: 1.25rem; /* text-xl */
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 15px;
 }
 
+.table-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, #6b5b95, #826eaf);
+  border-radius: 2px;
+}
+
+/* 表格樣式 */
 .table-full {
   width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 
 .table-bordered {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .table-bg {
   background-color: white;
 }
 
+/* 表格標題列 */
 .table-cell-header {
-  font-size: 1.4rem; /* 設置字體大小 */
-  background-color: #D9D9D9;
-  border: 1px solid #151414;
-  padding: 0.4rem;
-  color: #6b5b95;
-  width: 16%;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #6b5b95, #826eaf);
+  color: white;
+  padding: 1rem;
+  font-weight: 600;
+  text-align: center;
+  border: none;
 }
 
+/* 表格單元格 */
 .table-cell {
-  border: 1px solid #121111;
-  padding: 0.75rem;
+  padding: 1.2rem 1rem;
+  border: 1px solid #eee;
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: background-color 0.3s ease;
 }
 
+/* 表格列懸停效果 */
+tbody tr:hover {
+  background-color: #f8f9ff;
+}
+
+/* 票種列樣式 */
+.table-cell:first-child {
+  font-weight: bold;
+  color: #6b5b95;
+}
+
+/* 價格列樣式 */
+.table-cell:nth-child(2) {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+/* 規定列表樣式 */
 .table-list {
-  list-style-type: disc;
-  padding-left: 1rem;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.table-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.table-list li::before {
+  content: '•';
+  color: #6b5b95;
+  font-weight: bold;
+  position: absolute;
+  left: 0.5rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .table-container {
+    max-width: 95%;
+    padding: 1rem;
+  }
+
+  .table-cell-header {
+    font-size: 1rem;
+  }
+
+  .table-cell {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .table-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .table-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* 增加整體頁面背景 */
+:deep(body) {
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  font-family: 'Microsoft JhengHei', Arial, sans-serif;
 }
 </style>

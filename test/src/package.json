@@ -2,9 +2,10 @@
   "name": "src",
   "version": "1.0.0",
   "main": "main.js",
+    "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node lineNo.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,9 @@
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "express": "^4.21.1",
+    "mongoose": "^8.8.3",
     "vue-router": "^4.4.5"
   },
   "description": ""
